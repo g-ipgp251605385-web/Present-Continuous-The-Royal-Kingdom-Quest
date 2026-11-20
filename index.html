@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Present Continuous: The Royal Kingdom Quest</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka & Nunito for child-friendly, clear readability -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Tone.js for magical synthesized fairytale music and sound effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <!-- Canvas Confetti for royal celebrations -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        :root {
+            --pink-light: #fff0f6;
+            --pink-main: #ff70a6;
+            --purple-light: #f3e8ff;
+            --purple-main: #9d4edd;
+            --gold-light: #fffbeb;
+            --gold-main: #fbbf24;
+            --gold-dark: #d97706;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #fce7f3 0%, #ede9fe 50%, #e0f2fe 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        h1, h2, h3, .font-royal {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Floating & Sparkle Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.7)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 20px rgba(251, 191, 36, 1)); transform: scale(1.06); }
+        }
+        .animate-jewel-glow {
+            animation: pulse-glow 2.5s infinite ease-in-out;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .star-sparkle {
+            animation: sparkle 2s infinite ease-in-out;
+        }
+
+        /* 3D Royal Bubble Buttons */
+        .btn-royal {
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            top: 0;
+        }
+        .btn-royal:hover:not(:disabled) {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+        }
+        .btn-royal:active:not(:disabled) {
+            top: 4px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2) !important;
+        }
+
+        .btn-pink {
+            background: linear-gradient(180deg, #ff85b3 0%, #f43f8e 100%);
+            box-shadow: 0 5px 0 #be185d, 0 8px 15px rgba(244, 63, 142, 0.35);
+            border: 2px solid #fbcfe8;
+        }
+        .btn-purple {
+            background: linear-gradient(180deg, #b565f2 0%, #7e22ce 100%);
+            box-shadow: 0 5px 0 #581c87, 0 8px 15px rgba(126, 34, 206, 0.35);
+            border: 2px solid #e9d5ff;
+        }
+        .btn-gold {
+            background: linear-gradient(180deg, #fcd34d 0%, #f59e0b 100%);
+            box-shadow: 0 5px 0 #b45309, 0 8px 20px rgba(245, 158, 11, 0.45);
+            border: 2px solid #fef3c7;
+            color: #451a03;
+        }
+        .btn-blue {
+            background: linear-gradient(180deg, #60a5fa 0%, #2563eb 100%);
+            box-shadow: 0 5px 0 #1d4ed8, 0 8px 15px rgba(37, 99, 235, 0.35);
+            border: 2px solid #dbeafe;
+        }
+
+        /* Glassmorphic Royal Card */
+        .royal-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 4px solid #ffffff;
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.15), inset 0 0 20px rgba(252, 231, 243, 0.6);
+        }
+
+        /* Treasure Chest Lid Opening Animation */
+        .chest-lid {
+            transform-origin: bottom center;
+            transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .chest-open .chest-lid {
+            transform: rotateX(115deg) translateY(-10px);
+        }
+
+        /* Print Styles for Certificate */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #certificate-printable, #certificate-printable * {
+                visibility: visible;
+            }
+            #certificate-printable {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 20px;
+                box-shadow: none !important;
+                border: 8px double #d97706 !important;
+                background: #fff9fb !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen relative">
+
+    <!-- Ambient Decorative Background Elements -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute top-8 left-8 text-yellow-400 text-3xl star-sparkle">✨</div>
+        <div class="absolute top-24 right-12 text-pink-400 text-4xl animate-float">🦋</div>
+        <div class="absolute bottom-20 left-12 text-purple-400 text-3xl animate-float" style="animation-delay: 1s;">🌸</div>
+        <div class="absolute top-1/2 right-6 text-yellow-400 text-2xl star-sparkle" style="animation-delay: 0.7s;">⭐</div>
+        <div class="absolute bottom-12 right-16 text-pink-400 text-3xl animate-float" style="animation-delay: 1.5s;">🦋</div>
+    </div>
+
+    <!-- TOP NAVIGATION & PROGRESS TRACKER BAR -->
+    <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b-2 border-pink-200 shadow-sm px-3 py-2 md:px-6 no-print">
+        <div class="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <!-- Home / Title Pill -->
+            <button onclick="navigateTo('welcome')" class="flex items-center gap-2 bg-pink-100 hover:bg-pink-200 text-pink-800 font-royal font-bold px-3 py-1.5 rounded-full text-sm md:text-base transition cursor-pointer">
+                <span>👑</span>
+                <span class="hidden sm:inline">Everglow Kingdom</span>
+                <span class="sm:hidden">Home</span>
+            </button>
+
+            <!-- Royal Progress Tracker -->
+            <div class="flex items-center gap-1 sm:gap-2 bg-purple-50 border-2 border-purple-200 px-3 py-1 rounded-full text-xs sm:text-sm font-bold">
+                <button id="nav-lvl1" onclick="tryAccessLevel(1)" class="flex items-center gap-1 px-2 py-0.5 rounded-full transition cursor-pointer bg-pink-100 text-pink-700">
+                    <span id="jewel-badge-1">🔒</span> <span>Level 1</span>
+                </button>
+                <span class="text-purple-300">→</span>
+                <button id="nav-lvl2" onclick="tryAccessLevel(2)" class="flex items-center gap-1 px-2 py-0.5 rounded-full transition opacity-60 cursor-not-allowed text-slate-500">
+                    <span id="jewel-badge-2">🔒</span> <span>Level 2</span>
+                </button>
+                <span class="text-purple-300">→</span>
+                <button id="nav-lvl3" onclick="tryAccessLevel(3)" class="flex items-center gap-1 px-2 py-0.5 rounded-full transition opacity-60 cursor-not-allowed text-slate-500">
+                    <span id="jewel-badge-3">🔒</span> <span>Level 3</span>
+                </button>
+                <span class="text-purple-300">→</span>
+                <button id="nav-treasure" onclick="tryAccessTreasure()" class="flex items-center gap-1 px-2 py-0.5 rounded-full transition opacity-60 cursor-not-allowed text-amber-700">
+                    <span id="treasure-badge">👑</span> <span class="hidden md:inline">Royal Treasure</span>
+                </button>
+            </div>
+
+            <!-- Music Toggle & Certificate Quick Access -->
+            <div class="flex items-center gap-2">
+                <button onclick="navigateTo('certificate')" title="View Certificate" class="bg-amber-100 hover:bg-amber-200 text-amber-800 font-bold px-3 py-1.5 rounded-full text-xs sm:text-sm border border-amber-300 transition cursor-pointer">
+                    📜 <span class="hidden md:inline">Certificate</span>
+                </button>
+                <button id="music-toggle-btn" onclick="toggleMusic()" class="bg-purple-100 hover:bg-purple-200 text-purple-800 font-bold px-3 py-1.5 rounded-full text-xs sm:text-sm border border-purple-300 transition cursor-pointer flex items-center gap-1">
+                    <span id="music-icon">🔇</span> <span id="music-label" class="hidden sm:inline">Music OFF</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CUSTOM MESSAGE MODAL (Replaces alert) -->
+    <div id="royal-modal" class="fixed inset-0 bg-purple-950/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="royal-card rounded-3xl max-w-md w-full p-6 text-center transform transition-all scale-100">
+            <div id="modal-emoji" class="text-5xl mb-3 animate-bounce">🧚‍♀️</div>
+            <h3 id="modal-title" class="text-2xl font-royal font-bold text-purple-800 mb-2">Royal Fairy Says</h3>
+            <p id="modal-text" class="text-slate-700 text-lg font-semibold mb-6">Complete the previous level first to unlock this magical place!</p>
+            <button onclick="closeModal()" class="btn-royal btn-pink text-white font-royal font-bold text-lg px-8 py-3 rounded-full cursor-pointer">
+                GOT IT! ✨
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN GAME CONTAINER -->
+    <main id="game-viewport" class="flex-grow flex items-center justify-center p-3 sm:p-6 z-10 max-w-5xl w-full mx-auto">
+        <!-- Dynamic Screens Injected Here -->
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-3 text-xs sm:text-sm text-purple-700/75 font-semibold no-print z-10">
+        👑 Everglow Kingdom English Adventure • Year 3 ESL Present Continuous Quest
+    </footer>
+
+    <script>
+        /* =========================================================================
+           1. GAME STATE & PROGRESSION DATA
+           ========================================================================= */
+        const gameState = {
+            currentScreen: 'welcome',
+            studentName: '',
+            unlockedLevels: [1], // Starts with Level 1 unlocked
+            jewelsCollected: { 1: false, 2: false, 3: false },
+            treasureUnlocked: false,
+            musicPlaying: false,
+
+            // Level 1 State
+            lvl1Index: 0,
+            lvl1Answered: false,
+
+            // Level 2 State
+            lvl2Index: 0,
+            lvl2Answered: false,
+
+            // Level 3 State (3 Sub-challenges)
+            lvl3SubStage: 1, // 1: Picture Match, 2: Word Puzzle, 3: Sentence Creator
+            lvl3MatchSelectedPic: null,
+            lvl3MatchedPairs: [], // array of matched IDs
+            lvl3PuzzleIndex: 0,
+            lvl3PuzzleBuilt: [],
+            lvl3PuzzleAvailable: [],
+            lvl3CreatorIndex: 0,
+            lvl3CreatorInputs: ['', '', ''],
+            lvl3CreatorChecked: [false, false, false]
+        };
+
+        /* =========================================================================
+           2. CURRICULUM CONTENT (YEAR 3 ESL PRESENT CONTINUOUS)
+           ========================================================================= */
+        const level1Questions = [
+            {
+                q: "Which sentence is correct?",
+                options: [
+                    { id: "A", text: "She is reading a book." },
+                    { id: "B", text: "She reads a book." }
+                ],
+                correct: "A",
+                hint: "Look for 'is' + verb-ing for an action happening right now!"
+            },
+            {
+                q: "Which sentence describes an action happening now?",
+                options: [
+                    { id: "A", text: "He plays football." },
+                    { id: "B", text: "He is playing football." }
+                ],
+                correct: "B",
+                hint: "Present Continuous uses 'is' + '-ing'!"
+            },
+            {
+                q: "Choose the Present Continuous sentence.",
+                options: [
+                    { id: "A", text: "They are dancing." },
+                    { id: "B", text: "They dance every day." }
+                ],
+                correct: "A",
+                hint: "They + are + verb-ing shows what they are doing right now!"
+            },
+            {
+                q: "Which sentence is correct?",
+                options: [
+                    { id: "A", text: "I am eating an apple." },
+                    { id: "B", text: "I eating an apple." }
+                ],
+                correct: "A",
+                hint: "Don't forget 'am' after 'I'!"
+            },
+            {
+                q: "Identify the correct sentence.",
+                options: [
+                    { id: "A", text: "The princess is singing." },
+                    { id: "B", text: "The princess sings every morning." }
+                ],
+                correct: "A",
+                hint: "The princess is doing it right now: 'is singing'!"
+            }
+        ];
+
+        const level2Questions = [
+            // Challenge 1: Fill in the blanks (Questions 1-5)
+            {
+                type: "fill",
+                partTitle: "Challenge 1: Fill in the Blanks",
+                promptBefore: "The boy",
+                promptAfter: "to school.",
+                verbHint: "(run)",
+                answer: "is running",
+                tip: "Remember: 'The boy' uses 'is', and 'run' doubles the 'n' → running!"
+            },
+            {
+                type: "fill",
+                partTitle: "Challenge 1: Fill in the Blanks",
+                promptBefore: "The princess",
+                promptAfter: "a song.",
+                verbHint: "(sing)",
+                answer: "is singing",
+                tip: "Use 'is' + 'singing'!"
+            },
+            {
+                type: "fill",
+                partTitle: "Challenge 1: Fill in the Blanks",
+                promptBefore: "They",
+                promptAfter: "in the garden.",
+                verbHint: "(play)",
+                answer: "are playing",
+                tip: "'They' is plural, so use 'are' + 'playing'!"
+            },
+            {
+                type: "fill",
+                partTitle: "Challenge 1: Fill in the Blanks",
+                promptBefore: "I",
+                promptAfter: "a letter.",
+                verbHint: "(write)",
+                answer: "am writing",
+                tip: "'I' uses 'am', and 'write' drops the 'e' → writing!"
+            },
+            {
+                type: "fill",
+                partTitle: "Challenge 1: Fill in the Blanks",
+                promptBefore: "We",
+                promptAfter: "English.",
+                verbHint: "(study)",
+                answer: "are studying",
+                tip: "'We' uses 'are' + 'studying'!"
+            },
+            // Challenge 2: Choose the correct answer (Questions 6-8)
+            {
+                type: "mcq",
+                partTitle: "Challenge 2: Choose the Correct Answer",
+                sentence: "She ______ a beautiful dress.",
+                options: [
+                    { id: "A", text: "am wearing" },
+                    { id: "B", text: "is wearing" },
+                    { id: "C", text: "are wearing" }
+                ],
+                correct: "B",
+                tip: "For 'She', we always use 'is'!"
+            },
+            {
+                type: "mcq",
+                partTitle: "Challenge 2: Choose the Correct Answer",
+                sentence: "The children ______ happily.",
+                options: [
+                    { id: "A", text: "are dancing" },
+                    { id: "B", text: "is dancing" },
+                    { id: "C", text: "am dancing" }
+                ],
+                correct: "A",
+                tip: "'The children' means more than one child, so we use 'are'!"
+            },
+            {
+                type: "mcq",
+                partTitle: "Challenge 2: Choose the Correct Answer",
+                sentence: "He ______ a bicycle.",
+                options: [
+                    { id: "A", text: "are riding" },
+                    { id: "B", text: "am riding" },
+                    { id: "C", text: "is riding" }
+                ],
+                correct: "C",
+                tip: "For 'He', we use 'is'!"
+            }
+        ];
+
+        const level3Matches = [
+            { id: 1, emoji: "👧🍦", label: "Girl with ice cream", sentence: "The girl is eating ice cream." },
+            { id: 2, emoji: "🏃‍♂️💨", label: "Boy running fast", sentence: "The boy is running." },
+            { id: 3, emoji: "👧👦⚽", label: "Two children & ball", sentence: "The children are playing football." },
+            { id: 4, emoji: "👸📖", label: "Princess with book", sentence: "The princess is reading a book." },
+            { id: 5, emoji: "🏊‍♂️💦", label: "Boy in water", sentence: "The boy is swimming." }
+        ];
+
+        const level3Puzzles = [
+            {
+                scrambled: ["playing", "is", "She", "piano", "the"],
+                answer: "She is playing the piano."
+            },
+            {
+                scrambled: ["are", "They", "singing"],
+                answer: "They are singing."
+            },
+            {
+                scrambled: ["eating", "He", "is", "cake"],
+                answer: "He is eating cake."
+            }
+        ];
+
+        const level3Creators = [
+            {
+                emoji: "👸💃✨",
+                title: "Picture 1: A princess dancing",
+                placeholder: "Write a sentence about the princess...",
+                suggested: "The princess is dancing.",
+                keywords: ["is", "dancing"]
+            },
+            {
+                emoji: "👦🎨🖍️",
+                title: "Picture 2: A boy drawing",
+                placeholder: "Write a sentence about the boy...",
+                suggested: "The boy is drawing.",
+                keywords: ["is", "drawing"]
+            },
+            {
+                emoji: "👧👧🎤🎶",
+                title: "Picture 3: Two girls singing",
+                placeholder: "Write a sentence about the girls...",
+                suggested: "The girls are singing.",
+                keywords: ["are", "singing"]
+            }
+        ];
+
+        /* =========================================================================
+           3. SOUND EFFECTS & FAIRYTALE BACKGROUND MUSIC (TONE.JS)
+           ========================================================================= */
+        let bgLoop = null;
+        let synth = null;
+
+        async function initAudio() {
+            if (!synth) {
+                await Tone.start();
+                synth = new Tone.PolySynth(Tone.Synth, {
+                    oscillator: { type: "sine" },
+                    envelope: { attack: 0.05, decay: 0.2, sustain: 0.2, release: 0.8 }
+                }).toDestination();
+                synth.volume.value = -10;
+            }
+        }
+
+        async function playSound(type) {
+            try {
+                await initAudio();
+                const now = Tone.now();
+                if (type === 'click') {
+                    synth.triggerAttackRelease("C5", "16n", now);
+                } else if (type === 'correct') {
+                    synth.triggerAttackRelease(["C5", "E5", "G5", "C6"], "8n", now);
+                    setTimeout(() => synth.triggerAttackRelease(["E5", "G5", "B5", "E6"], "4n"), 140);
+                } else if (type === 'wrong') {
+                    synth.triggerAttackRelease(["E4", "Eb4"], "8n", now);
+                } else if (type === 'jewel') {
+                    const notes = ["C5", "D5", "E5", "G5", "A5", "C6"];
+                    notes.forEach((n, idx) => {
+                        synth.triggerAttackRelease(n, "16n", now + idx * 0.09);
+                    });
+                } else if (type === 'chest') {
+                    const fanfare = ["C4", "E4", "G4", "C5", "E5", "G5", "C6"];
+                    fanfare.forEach((n, idx) => {
+                        synth.triggerAttackRelease(n, "8n", now + idx * 0.11);
+                    });
+                }
+            } catch (e) {
+                // Audio context might await user gesture
+            }
+        }
+
+        async function toggleMusic() {
+            await initAudio();
+            const icon = document.getElementById('music-icon');
+            const label = document.getElementById('music-label');
+
+            if (!gameState.musicPlaying) {
+                const melody = ["C5", "E5", "G5", "B5", "A5", "G5", "E5", "D5", "F5", "A5", "G5", "E5"];
+                let step = 0;
+                bgLoop = new Tone.Loop((time) => {
+                    const note = melody[step % melody.length];
+                    synth.triggerAttackRelease(note, "8n", time, 0.25);
+                    step++;
+                }, "4n").start(0);
+                Tone.Transport.bpm.value = 95;
+                Tone.Transport.start();
+                gameState.musicPlaying = true;
+                icon.textContent = "🎵";
+                label.textContent = "Music ON";
+            } else {
+                if (bgLoop) {
+                    bgLoop.stop();
+                    bgLoop.dispose();
+                    bgLoop = null;
+                }
+                Tone.Transport.stop();
+                gameState.musicPlaying = false;
+                icon.textContent = "🔇";
+                label.textContent = "Music OFF";
+            }
+        }
+
+        /* =========================================================================
+           4. CUSTOM SVG ILLUSTRATIONS (ROYAL CHARACTERS, CASTLE, JEWELS, CHEST)
+           ========================================================================= */
+        const SVGs = {
+            royalHeroes: `
+                <svg viewBox="0 0 360 180" class="w-full max-w-sm mx-auto drop-shadow-md animate-float">
+                    <!-- Castle Background Silhouette -->
+                    <rect x="115" y="55" width="130" height="105" rx="8" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="3"/>
+                    <polygon points="110,55 140,20 170,55" fill="#f472b6"/>
+                    <polygon points="190,55 220,20 250,55" fill="#f472b6"/>
+                    <polygon points="150,45 180,5 210,45" fill="#c084fc"/>
+                    <rect x="165" y="110" width="30" height="50" rx="15" fill="#fbbf24"/>
+                    <!-- Princess (Left) -->
+                    <g transform="translate(45, 45)">
+                        <path d="M20,65 L5,115 L65,115 L50,65 Z" fill="#ff70a6" stroke="#db2777" stroke-width="2"/>
+                        <circle cx="35" cy="42" r="20" fill="#fde68a"/>
+                        <path d="M15,40 Q35,15 55,40" fill="#92400e"/>
+                        <circle cx="28" cy="42" r="2.5" fill="#1e293b"/>
+                        <circle cx="42" cy="42" r="2.5" fill="#1e293b"/>
+                        <path d="M30,50 Q35,55 40,50" stroke="#db2777" stroke-width="2" fill="none"/>
+                        <!-- Crown -->
+                        <polygon points="23,23 28,12 35,20 42,12 47,23" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>
+                    </g>
+                    <!-- Prince (Right) -->
+                    <g transform="translate(245, 45)">
+                        <rect x="18" y="65" width="34" height="50" rx="6" fill="#3b82f6" stroke="#1d4ed8" stroke-width="2"/>
+                        <circle cx="35" cy="42" r="20" fill="#fde68a"/>
+                        <path d="M15,36 Q35,18 55,36" fill="#451a03"/>
+                        <circle cx="28" cy="42" r="2.5" fill="#1e293b"/>
+                        <circle cx="42" cy="42" r="2.5" fill="#1e293b"/>
+                        <path d="M30,50 Q35,55 40,50" stroke="#1d4ed8" stroke-width="2" fill="none"/>
+                        <!-- Crown -->
+                        <polygon points="23,23 28,12 35,20 42,12 47,23" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>
+                    </g>
+                    <!-- Royal Fairy (Center Floating) -->
+                    <g transform="translate(152, 55)">
+                        <ellipse cx="14" cy="35" rx="14" ry="8" fill="#e0f2fe" opacity="0.85" transform="rotate(-25 14 35)"/>
+                        <ellipse cx="42" cy="35" rx="14" ry="8" fill="#e0f2fe" opacity="0.85" transform="rotate(25 42 35)"/>
+                        <path d="M20,38 L12,65 L44,65 L36,38 Z" fill="#a855f7"/>
+                        <circle cx="28" cy="24" r="13" fill="#fef3c7"/>
+                        <circle cx="24" cy="24" r="1.8" fill="#1e293b"/>
+                        <circle cx="32" cy="24" r="1.8" fill="#1e293b"/>
+                        <line x1="45" y1="45" x2="62" y2="25" stroke="#fbbf24" stroke-width="3"/>
+                        <polygon points="62,18 64,23 69,23 65,26 66,31 62,28 58,31 59,26 55,23 60,23" fill="#fbbf24"/>
+                    </g>
+                </svg>
+            `,
+            jewel: (color1, color2, label) => `
+                <div class="inline-flex flex-col items-center animate-jewel-glow">
+                    <svg viewBox="0 0 100 100" class="w-24 h-24">
+                        <polygon points="50,8 88,35 72,90 28,90 12,35" fill="${color1}" stroke="#fbbf24" stroke-width="5"/>
+                        <polygon points="50,20 74,38 63,78 37,78 26,38" fill="${color2}" opacity="0.85"/>
+                        <polygon points="35,28 50,20 45,38" fill="#ffffff" opacity="0.75"/>
+                    </svg>
+                    ${label ? `<span class="mt-1 font-royal font-bold text-amber-800 bg-amber-100 px-3 py-0.5 rounded-full text-xs border border-amber-300">${label}</span>` : ''}
+                </div>
+            `,
+            treasureChest: (isOpen) => `
+                <div id="chest-visual" class="relative w-64 h-52 mx-auto flex items-center justify-center ${isOpen ? 'chest-open' : ''}">
+                    ${isOpen ? `
+                        <div class="absolute inset-0 bg-amber-300/40 rounded-full blur-2xl animate-pulse"></div>
+                        <div class="absolute -top-6 z-20 animate-bounce text-6xl drop-shadow-lg">👑</div>
+                    ` : ''}
+                    <svg viewBox="0 0 220 180" class="w-full h-full drop-shadow-xl relative z-10">
+                        <!-- Chest Base -->
+                        <rect x="30" y="85" width="160" height="75" rx="12" fill="#b45309" stroke="#fbbf24" stroke-width="6"/>
+                        <rect x="45" y="95" width="130" height="55" rx="6" fill="#d97706"/>
+                        <!-- Gold Straps -->
+                        <rect x="55" y="85" width="16" height="75" fill="#fbbf24"/>
+                        <rect x="149" y="85" width="16" height="75" fill="#fbbf24"/>
+                        <!-- Chest Lid -->
+                        <g class="chest-lid">
+                            <path d="M26,85 Q26,35 110,35 Q194,35 194,85 Z" fill="#d97706" stroke="#fbbf24" stroke-width="6"/>
+                            <rect x="55" y="40" width="16" height="45" fill="#fbbf24"/>
+                            <rect x="149" y="40" width="16" height="45" fill="#fbbf24"/>
+                            <!-- Center Lock -->
+                            <circle cx="110" cy="85" r="18" fill="#fbbf24" stroke="#92400e" stroke-width="3"/>
+                            <circle cx="110" cy="82" r="4" fill="#451a03"/>
+                            <polygon points="107,84 113,84 115,93 105,93" fill="#451a03"/>
+                        </g>
+                    </svg>
+                </div>
+            `
+        };
+
+        /* =========================================================================
+           5. MODAL & NAVIGATION CONTROLLERS
+           ========================================================================= */
+        function showModal(emoji, title, text) {
+            document.getElementById('modal-emoji').textContent = emoji;
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-text').textContent = text;
+            const modal = document.getElementById('royal-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            playSound('click');
+            const modal = document.getElementById('royal-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function updateProgressBar() {
+            for (let lvl = 1; lvl <= 3; lvl++) {
+                const navBtn = document.getElementById(`nav-lvl${lvl}`);
+                const badge = document.getElementById(`jewel-badge-${lvl}`);
+                const isUnlocked = gameState.unlockedLevels.includes(lvl);
+                const hasJewel = gameState.jewelsCollected[lvl];
+
+                if (hasJewel) {
+                    badge.textContent = "💎";
+                    navBtn.className = "flex items-center gap-1 px-2.5 py-0.5 rounded-full transition cursor-pointer bg-amber-100 text-amber-800 border border-amber-300";
+                } else if (isUnlocked) {
+                    badge.textContent = "✨";
+                    navBtn.className = "flex items-center gap-1 px-2.5 py-0.5 rounded-full transition cursor-pointer bg-pink-100 text-pink-800 border border-pink-300";
+                } else {
+                    badge.textContent = "🔒";
+                    navBtn.className = "flex items-center gap-1 px-2.5 py-0.5 rounded-full transition opacity-60 cursor-not-allowed text-slate-500";
+                }
+            }
+
+            const treasureBtn = document.getElementById('nav-treasure');
+            const allJewels = gameState.jewelsCollected[1] && gameState.jewelsCollected[2] && gameState.jewelsCollected[3];
+            if (allJewels) {
+                treasureBtn.className = "flex items-center gap-1 px-2.5 py-0.5 rounded-full transition cursor-pointer bg-amber-200 text-amber-900 border border-amber-400 animate-pulse";
+            } else {
+                treasureBtn.className = "flex items-center gap-1 px-2.5 py-0.5 rounded-full transition opacity-60 cursor-not-allowed text-amber-700";
+            }
+        }
+
+        function tryAccessLevel(lvl) {
+            if (gameState.unlockedLevels.includes(lvl)) {
+                navigateTo(`level${lvl}`);
+            } else {
+                playSound('wrong');
+                showModal("🔒", "Locked Royal Gate!", `Complete Level ${lvl - 1} first to collect your Golden Jewel and unlock Level ${lvl}!`);
+            }
+        }
+
+        function tryAccessTreasure() {
+            if (gameState.jewelsCollected[1] && gameState.jewelsCollected[2] && gameState.jewelsCollected[3]) {
+                navigateTo('treasure');
+            } else {
+                playSound('wrong');
+                showModal("👑", "The Royal Chest is Locked!", "Collect all three Golden Jewels from Levels 1, 2, and 3 to unlock the Royal Treasure Chest!");
+            }
+        }
+
+        function navigateTo(screen) {
+            playSound('click');
+            gameState.currentScreen = screen;
+            updateProgressBar();
+            renderScreen();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function launchConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 85,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#ff70a6', '#c084fc', '#fbbf24', '#38bdf8']
+                });
+            }
+        }
+
+        /* =========================================================================
+           6. SCREEN RENDERERS
+           ========================================================================= */
+        function renderScreen() {
+            const container = document.getElementById('game-viewport');
+            switch (gameState.currentScreen) {
+                case 'welcome':
+                    container.innerHTML = renderWelcomeScreen();
+                    break;
+                case 'howto':
+                    container.innerHTML = renderHowToScreen();
+                    break;
+                case 'level1':
+                    container.innerHTML = renderLevel1Screen();
+                    break;
+                case 'level2':
+                    container.innerHTML = renderLevel2Screen();
+                    break;
+                case 'level3':
+                    container.innerHTML = renderLevel3Screen();
+                    break;
+                case 'treasure':
+                    container.innerHTML = renderTreasureScreen();
+                    break;
+                case 'certificate':
+                    container.innerHTML = renderCertificateScreen();
+                    break;
+            }
+        }
+
+        /* --- PAGE 1: WELCOME SCREEN --- */
+        function renderWelcomeScreen() {
+            return `
+                <div class="royal-card rounded-3xl p-6 sm:p-10 text-center max-w-3xl w-full relative overflow-hidden">
+                    <div class="inline-block bg-pink-100 text-pink-700 font-bold px-4 py-1 rounded-full text-sm mb-3 border border-pink-300">
+                        ✨ Everglow Kingdom Adventure ✨
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl font-royal font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-amber-500 mb-2 leading-tight">
+                        👑 PRESENT CONTINUOUS:<br>THE ROYAL KINGDOM QUEST
+                    </h1>
+                    <p class="text-lg sm:text-xl font-royal font-semibold text-purple-700 mb-4">
+                        A Magical Grammar Adventure!
+                    </p>
+
+                    ${SVGs.royalHeroes}
+
+                    <div class="bg-pink-50/90 border-2 border-pink-200 rounded-2xl p-4 sm:p-5 my-5 text-slate-700 max-w-xl mx-auto">
+                        <p class="font-bold text-pink-800 text-lg mb-1">Hello, Little Princesses and Princes! 🌸</p>
+                        <p class="text-sm sm:text-base leading-relaxed">
+                            The kingdom’s Magical Royal Crown has lost its <strong>three Golden Jewels</strong>! Explore the kingdom, complete exciting grammar challenges, and collect all three jewels to unlock the Royal Treasure Chest!
+                        </p>
+                    </div>
+
+                    <!-- Explorer Name Input -->
+                    <div class="max-w-sm mx-auto mb-6">
+                        <label class="block text-sm font-bold text-purple-800 mb-1">Enter Your Royal Explorer Name:</label>
+                        <input type="text" id="player-name-input" value="${gameState.studentName}"
+                            oninput="gameState.studentName = this.value"
+                            placeholder="e.g. Princess Sofia / Prince Adam"
+                            class="w-full px-4 py-2.5 rounded-full border-2 border-purple-300 focus:border-pink-500 focus:outline-none text-center font-bold text-purple-900 bg-white shadow-inner">
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <button onclick="navigateTo('level1')" class="btn-royal btn-pink text-white font-royal font-bold text-lg sm:text-xl px-8 py-4 rounded-full w-full sm:w-auto cursor-pointer">
+                            🚀 START MY ADVENTURE
+                        </button>
+                        <button onclick="navigateTo('howto')" class="btn-royal btn-purple text-white font-royal font-bold text-lg px-7 py-4 rounded-full w-full sm:w-auto cursor-pointer">
+                            🗺️ HOW TO PLAY
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        /* --- PAGE 2: HOW TO PLAY & ROYAL MAP --- */
+        function renderHowToScreen() {
+            return `
+                <div class="royal-card rounded-3xl p-6 sm:p-10 max-w-3xl w-full text-center">
+                    <h2 class="text-3xl sm:text-4xl font-royal font-bold text-purple-800 mb-2">✨ Your Royal Mission</h2>
+                    <p class="text-slate-600 font-semibold mb-6">Follow the sparkling royal path across Everglow Kingdom!</p>
+
+                    <!-- Magical Royal Map Path -->
+                    <div class="bg-gradient-to-r from-pink-100 via-purple-100 to-amber-100 border-2 border-purple-200 rounded-2xl p-4 sm:p-6 mb-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+                            <div class="bg-white rounded-2xl p-4 shadow-sm border-2 border-pink-300">
+                                <div class="text-3xl mb-1">🌸</div>
+                                <div class="font-royal font-bold text-pink-700">1. Princess Garden</div>
+                                <div class="text-xs text-slate-600 mt-1">Identify Present Continuous</div>
+                                <div class="mt-2 text-xs font-bold text-amber-600">Reward: 💎 Jewel 1</div>
+                            </div>
+                            <div class="bg-white rounded-2xl p-4 shadow-sm border-2 border-purple-300">
+                                <div class="text-3xl mb-1">🏰</div>
+                                <div class="font-royal font-bold text-purple-700">2. Enchanted Castle</div>
+                                <div class="text-xs text-slate-600 mt-1">Use am / is / are + verb-ing</div>
+                                <div class="mt-2 text-xs font-bold text-amber-600">Reward: 💎 Jewel 2</div>
+                            </div>
+                            <div class="bg-white rounded-2xl p-4 shadow-sm border-2 border-amber-300">
+                                <div class="text-3xl mb-1">👑</div>
+                                <div class="font-royal font-bold text-amber-700">3. Royal Palace</div>
+                                <div class="text-xs text-slate-600 mt-1">Match, Build & Create!</div>
+                                <div class="mt-2 text-xs font-bold text-amber-600">Reward: 💎 Jewel 3</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left mb-8">
+                        <div class="bg-pink-50 border border-pink-200 rounded-2xl p-4">
+                            <h3 class="font-royal font-bold text-pink-800 text-lg mb-2">📜 Mission Steps</h3>
+                            <ul class="space-y-1.5 text-sm font-semibold text-slate-700">
+                                <li>1. Explore three magical locations.</li>
+                                <li>2. Complete all grammar challenges.</li>
+                                <li>3. Collect one Golden Jewel from each level.</li>
+                                <li>4. Unlock the Royal Treasure Chest.</li>
+                                <li>5. Receive your Royal Certificate!</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 rounded-2xl p-4">
+                            <h3 class="font-royal font-bold text-purple-800 text-lg mb-2">🧚‍♀️ Royal Rules</h3>
+                            <ul class="space-y-1.5 text-sm font-semibold text-slate-700">
+                                <li>⭐ Choose the correct answers carefully.</li>
+                                <li>⭐ Complete each level to unlock the next.</li>
+                                <li>⭐ Try your best and learn from mistakes.</li>
+                                <li>⭐ Collect all three Golden Jewels!</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <button onclick="navigateTo('level1')" class="btn-royal btn-pink text-white font-royal font-bold text-xl px-10 py-4 rounded-full cursor-pointer">
+                        ✨ LET’S EXPLORE!
+                    </button>
+                </div>
+            `;
+        }
+
+        /* --- LEVEL 1: PRINCESS GARDEN --- */
+        function renderLevel1Screen() {
+            // Level 1 Completed View
+            if (gameState.jewelsCollected[1]) {
+                return `
+                    <div class="royal-card rounded-3xl p-6 sm:p-10 text-center max-w-2xl w-full border-4 border-pink-300">
+                        <div class="text-5xl mb-2">🌸✨🌸</div>
+                        <h2 class="text-3xl sm:text-4xl font-royal font-bold text-pink-700 mb-2">
+                            💎 GOLDEN JEWEL 1 UNLOCKED!
+                        </h2>
+                        <p class="text-slate-700 font-semibold text-lg mb-5">
+                            Wonderful! You restored the magical colours of the Princess Garden!
+                        </p>
+                        ${SVGs.jewel('#f472b6', '#fbcfe8', 'Pink Rose Jewel')}
+                        <div class="mt-8">
+                            <button onclick="navigateTo('level2')" class="btn-royal btn-purple text-white font-royal font-bold text-lg sm:text-xl px-8 py-4 rounded-full cursor-pointer">
+                                🏰 ENTER THE ENCHANTED CASTLE
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            const qObj = level1Questions[gameState.lvl1Index];
+            const progressPct = ((gameState.lvl1Index) / level1Questions.length) * 100;
+
+            return `
+                <div class="royal-card rounded-3xl p-5 sm:p-8 max-w-2xl w-full">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span class="bg-pink-100 text-pink-800 font-royal font-bold px-4 py-1 rounded-full text-sm border border-pink-300">
+                            🌸 Level 1: Princess Garden
+                        </span>
+                        <span class="font-bold text-sm text-purple-700">
+                            Question ${gameState.lvl1Index + 1} of ${level1Questions.length}
+                        </span>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-pink-100 h-3 rounded-full overflow-hidden mb-5 border border-pink-200">
+                        <div class="bg-gradient-to-r from-pink-500 to-purple-500 h-full transition-all duration-300" style="width: ${progressPct}%"></div>
+                    </div>
+
+                    <div class="bg-pink-50/80 border border-pink-200 rounded-2xl p-3 mb-5 flex items-center gap-3">
+                        <span class="text-3xl">🧚‍♀️</span>
+                        <p class="text-xs sm:text-sm font-semibold text-pink-900">
+                            <strong>Royal Fairy:</strong> Choose the sentence that uses <strong>Present Continuous Tense</strong> (happening right now)!
+                        </p>
+                    </div>
+
+                    <h3 class="text-xl sm:text-2xl font-royal font-bold text-slate-800 mb-5 text-center">
+                        ${qObj.q}
+                    </h3>
+
+                    <div class="space-y-3 mb-5">
+                        ${qObj.options.map(opt => `
+                            <button id="lvl1-opt-${opt.id}" onclick="checkLevel1Answer('${opt.id}')"
+                                class="w-full text-left p-4 rounded-2xl border-2 border-purple-200 bg-white hover:bg-pink-50 hover:border-pink-400 transition flex items-center gap-4 font-bold text-base sm:text-lg shadow-sm cursor-pointer">
+                                <span class="w-10 h-10 rounded-full bg-pink-100 text-pink-700 flex items-center justify-center font-royal shrink-0">
+                                    ${opt.id}
+                                </span>
+                                <span>${opt.text}</span>
+                            </button>
+                        `).join('')}
+                    </div>
+
+                    <div id="lvl1-feedback" class="hidden rounded-2xl p-4 text-center font-bold mb-4"></div>
+
+                    <div id="lvl1-next-wrap" class="hidden text-center">
+                        <button onclick="nextLevel1Question()" class="btn-royal btn-pink text-white font-royal font-bold text-lg px-8 py-3 rounded-full cursor-pointer">
+                            ${gameState.lvl1Index === level1Questions.length - 1 ? '💎 COLLECT MY JEWEL' : 'NEXT QUESTION ➡️'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function checkLevel1Answer(selectedId) {
+            if (gameState.lvl1Answered) return;
+            const qObj = level1Questions[gameState.lvl1Index];
+            const feedbackEl = document.getElementById('lvl1-feedback');
+            const nextWrap = document.getElementById('lvl1-next-wrap');
+
+            feedbackEl.classList.remove('hidden');
+
+            if (selectedId === qObj.correct) {
+                playSound('correct');
+                gameState.lvl1Answered = true;
+                const btn = document.getElementById(`lvl1-opt-${selectedId}`);
+                btn.classList.remove('border-purple-200', 'bg-white');
+                btn.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+
+                feedbackEl.className = "rounded-2xl p-4 text-center font-bold mb-4 bg-emerald-100 text-emerald-800 border-2 border-emerald-300";
+                feedbackEl.innerHTML = "🌟 Wonderful! You are amazing!";
+                nextWrap.classList.remove('hidden');
+            } else {
+                playSound('wrong');
+                const btn = document.getElementById(`lvl1-opt-${selectedId}`);
+                btn.classList.add('border-rose-400', 'bg-rose-50');
+                feedbackEl.className = "rounded-2xl p-4 text-center font-bold mb-4 bg-rose-100 text-rose-800 border-2 border-rose-300";
+                feedbackEl.innerHTML = `🧚‍♀️ Oops! Try again, little royal explorer!<br><span class="text-sm font-normal">${qObj.hint}</span>`;
+            }
+        }
+
+        function nextLevel1Question() {
+            playSound('click');
+            gameState.lvl1Answered = false;
+            if (gameState.lvl1Index < level1Questions.length - 1) {
+                gameState.lvl1Index++;
+                renderScreen();
+            } else {
+                // Unlock Jewel 1 & Level 2
+                gameState.jewelsCollected[1] = true;
+                if (!gameState.unlockedLevels.includes(2)) {
+                    gameState.unlockedLevels.push(2);
+                }
+                playSound('jewel');
+                launchConfetti();
+                updateProgressBar();
+                renderScreen();
+            }
+        }
+
+        /* --- LEVEL 2: ENCHANTED CASTLE --- */
+        function renderLevel2Screen() {
+            if (gameState.jewelsCollected[2]) {
+                return `
+                    <div class="royal-card rounded-3xl p-6 sm:p-10 text-center max-w-2xl w-full border-4 border-purple-300">
+                        <div class="text-5xl mb-2">🏰✨🏰</div>
+                        <h2 class="text-3xl sm:text-4xl font-royal font-bold text-purple-700 mb-2">
+                            💎 GOLDEN JEWEL 2 UNLOCKED!
+                        </h2>
+                        <p class="text-slate-700 font-semibold text-lg mb-5">
+                            Fantastic! All the Enchanted Castle doors are wide open!
+                        </p>
+                        ${SVGs.jewel('#a855f7', '#e9d5ff', 'Royal Amethyst Jewel')}
+                        <div class="mt-8">
+                            <button onclick="navigateTo('level3')" class="btn-royal btn-gold font-royal font-bold text-lg sm:text-xl px-8 py-4 rounded-full cursor-pointer">
+                                👑 CONTINUE TO THE ROYAL PALACE
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            const qObj = level2Questions[gameState.lvl2Index];
+            const progressPct = ((gameState.lvl2Index) / level2Questions.length) * 100;
+
+            return `
+                <div class="royal-card rounded-3xl p-5 sm:p-8 max-w-2xl w-full">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span class="bg-purple-100 text-purple-800 font-royal font-bold px-4 py-1 rounded-full text-sm border border-purple-300">
+                            🏰 Level 2: Enchanted Castle
+                        </span>
+                        <span class="font-bold text-sm text-purple-700">
+                            Question ${gameState.lvl2Index + 1} of ${level2Questions.length}
+                        </span>
+                    </div>
+
+                    <div class="w-full bg-purple-100 h-3 rounded-full overflow-hidden mb-4 border border-purple-200">
+                        <div class="bg-gradient-to-r from-purple-500 to-indigo-500 h-full transition-all duration-300" style="width: ${progressPct}%"></div>
+                    </div>
+
+                    <div class="text-center mb-2">
+                        <span class="text-xs font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-3 py-1 rounded-full border border-purple-200">
+                            ${qObj.partTitle}
+                        </span>
+                    </div>
+
+                    ${qObj.type === 'fill' ? `
+                        <div class="bg-purple-50/70 border-2 border-purple-200 rounded-2xl p-6 my-4 text-center">
+                            <p class="text-sm text-purple-700 font-bold mb-3">Complete with <span class="underline">am / is / are</span> + <span class="underline">verb-ing</span>:</p>
+                            <div class="text-xl sm:text-2xl font-royal font-bold text-slate-800 flex flex-wrap items-center justify-center gap-2">
+                                <span>${qObj.promptBefore}</span>
+                                <input type="text" id="lvl2-fill-input" autocomplete="off"
+                                    onkeydown="if(event.key==='Enter') checkLevel2Fill()"
+                                    placeholder="type here..."
+                                    class="border-b-4 border-purple-500 bg-white px-3 py-1.5 rounded-xl text-center text-purple-800 w-44 sm:w-52 focus:outline-none focus:border-pink-500 shadow-sm">
+                                <span>${qObj.promptAfter}</span>
+                            </div>
+                            <div class="mt-3 inline-block bg-amber-100 text-amber-800 font-bold px-3 py-1 rounded-full text-sm border border-amber-300">
+                                Verb Clue: ${qObj.verbHint}
+                            </div>
+                        </div>
+
+                        <div id="lvl2-feedback" class="hidden rounded-2xl p-4 text-center font-bold mb-4"></div>
+
+                        <div id="lvl2-check-wrap" class="text-center">
+                            <button onclick="checkLevel2Fill()" class="btn-royal btn-purple text-white font-royal font-bold text-lg px-8 py-3 rounded-full cursor-pointer">
+                                ✨ CHECK MY ANSWER
+                            </button>
+                        </div>
+                    ` : `
+                        <h3 class="text-xl sm:text-2xl font-royal font-bold text-slate-800 my-5 text-center bg-purple-50 py-4 px-3 rounded-2xl border border-purple-200">
+                            ${qObj.sentence}
+                        </h3>
+                        <div class="space-y-3 mb-5">
+                            ${qObj.options.map(opt => `
+                                <button id="lvl2-opt-${opt.id}" onclick="checkLevel2MCQ('${opt.id}')"
+                                    class="w-full text-left p-4 rounded-2xl border-2 border-purple-200 bg-white hover:bg-purple-50 hover:border-purple-400 transition flex items-center gap-4 font-bold text-base sm:text-lg shadow-sm cursor-pointer">
+                                    <span class="w-10 h-10 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-royal shrink-0">
+                                        ${opt.id}
+                                    </span>
+                                    <span>${opt.text}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div id="lvl2-feedback" class="hidden rounded-2xl p-4 text-center font-bold mb-4"></div>
+                    `}
+
+                    <div id="lvl2-next-wrap" class="hidden text-center">
+                        <button onclick="nextLevel2Question()" class="btn-royal btn-purple text-white font-royal font-bold text-lg px-8 py-3 rounded-full cursor-pointer">
+                            ${gameState.lvl2Index === level2Questions.length - 1 ? '💎 COLLECT MY JEWEL' : 'NEXT QUESTION ➡️'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function checkLevel2Fill() {
+            if (gameState.lvl2Answered) return;
+            const qObj = level2Questions[gameState.lvl2Index];
+            const inputEl = document.getElementById('lvl2-fill-input');
+            const userVal = inputEl.value.trim().toLowerCase().replace(/\s+/g, ' ');
+            const feedbackEl = document.getElementById('lvl2-feedback');
+
+            feedbackEl.classList.remove('hidden');
+
+            if (userVal === qObj.answer.toLowerCase()) {
+                playSound('correct');
+                gameState.lvl2Answered = true;
+                inputEl.disabled = true;
+                inputEl.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-800');
+                feedbackEl.className = "rounded-2xl p-4 text-center font-bold mb-4 bg-emerald-100 text-emerald-800 border-2 border-emerald-300";
+                feedbackEl.innerHTML = "🚪✨ Fantastic! The royal doors are opening!";
+                document.getElementById('lvl2-check-wrap').classList.add('hidden');
+                document.getElementById('lvl2-next-wrap').classList.remove('hidden');
+            } else {
+                playSound('wrong');
+                feedbackEl.className = "rounded-2xl p-4 text-center font-bold mb-4 bg-amber-100 text-amber-900 border-2 border-amber-300";
+                feedbackEl.innerHTML = `🧚‍♀️ Almost there! Check your answer and try again!<br><span class="text-sm font-normal">${qObj.tip}</span>`;
+            }
+        }
+
+        function checkLevel2MCQ(selectedId) {
+            if (gameState.lvl2Answered) return;
+            const qObj = level2Questions[gameState.lvl2Index];
+            const feedbackEl = document.getElementById('lvl2-feedback');
+            feedbackEl.classList.remove('hidden');
+
+            if (selectedId === qObj.correct) {
+                playSound('correct');
+                gameState.lvl2Answered = true;
+                const btn = document.getElementById(`lvl2-opt-${selectedId}`);
+                btn.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+                feedbackEl.className = "rounded-2xl p-4 text-center font-bold mb-4 bg-emerald-100 text-emerald-800 border-2 border-emerald-300";
+                feedbackEl.innerHTML = "🚪✨ Fantastic! The royal doors are opening!";
+                document.getElementById('lvl2-next-wrap').classList.remove('hidden');
+            } else {
+                playSound('wrong');
+                const btn = document.getElementById(`lvl2-opt-${selectedId}`);
+                btn.classList.add('border-rose-400', 'bg-rose-50');
+                feedbackEl.className = "rounded-2xl p-4 text-center font-bold mb-4 bg-amber-100 text-amber-900 border-2 border-amber-300";
+                feedbackEl.innerHTML = `🧚‍♀️ Almost there! Check your answer and try again!<br><span class="text-sm font-normal">${qObj.tip}</span>`;
+            }
+        }
+
+        function nextLevel2Question() {
+            playSound('click');
+            gameState.lvl2Answered = false;
+            if (gameState.lvl2Index < level2Questions.length - 1) {
+                gameState.lvl2Index++;
+                renderScreen();
+            } else {
+                gameState.jewelsCollected[2] = true;
+                if (!gameState.unlockedLevels.includes(3)) {
+                    gameState.unlockedLevels.push(3);
+                }
+                playSound('jewel');
+                launchConfetti();
+                updateProgressBar();
+                renderScreen();
+            }
+        }
+
+        /* --- LEVEL 3: ROYAL PALACE (3 SUB-CHALLENGES) --- */
+        function renderLevel3Screen() {
+            if (gameState.jewelsCollected[3]) {
+                return `
+                    <div class="royal-card rounded-3xl p-6 sm:p-10 text-center max-w-2xl w-full border-4 border-amber-300">
+                        <div class="text-5xl mb-2">👑✨👑</div>
+                        <h2 class="text-3xl sm:text-4xl font-royal font-bold text-amber-700 mb-2">
+                            💎 GOLDEN JEWEL 3 UNLOCKED!
+                        </h2>
+                        <p class="text-slate-700 font-semibold text-lg mb-5">
+                            Magnificent! You have collected all THREE Golden Jewels of Everglow Kingdom!
+                        </p>
+                        ${SVGs.jewel('#38bdf8', '#bae6fd', 'Royal Sapphire Jewel')}
+                        <div class="mt-8">
+                            <button onclick="navigateTo('treasure')" class="btn-royal btn-gold font-royal font-bold text-lg sm:text-xl px-8 py-4 rounded-full cursor-pointer">
+                                🗝️ UNLOCK THE ROYAL TREASURE!
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="royal-card rounded-3xl p-5 sm:p-8 max-w-3xl w-full">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                        <span class="bg-amber-100 text-amber-900 font-royal font-bold px-4 py-1 rounded-full text-sm border border-amber-300">
+                            👑 Level 3: Royal Palace
+                        </span>
+                        <div class="flex gap-1.5 text-xs font-bold">
+                            <span class="px-2.5 py-1 rounded-full ${gameState.lvl3SubStage === 1 ? 'bg-pink-500 text-white' : 'bg-pink-100 text-pink-700'}">1. Match</span>
+                            <span class="px-2.5 py-1 rounded-full ${gameState.lvl3SubStage === 2 ? 'bg-purple-600 text-white' : 'bg-purple-100 text-purple-700'}">2. Puzzle</span>
+                            <span class="px-2.5 py-1 rounded-full ${gameState.lvl3SubStage === 3 ? 'bg-amber-500 text-white' : 'bg-amber-100 text-amber-800'}">3. Create</span>
+                        </div>
+                    </div>
+
+                    ${gameState.lvl3SubStage === 1 ? renderLevel3Challenge1() : ''}
+                    ${gameState.lvl3SubStage === 2 ? renderLevel3Challenge2() : ''}
+                    ${gameState.lvl3SubStage === 3 ? renderLevel3Challenge3() : ''}
+                </div>
+            `;
+        }
+
+        // Level 3 - Challenge 1: Picture Matching
+        function renderLevel3Challenge1() {
+            const shuffledSentences = [
+                level3Matches[2],
+                level3Matches[0],
+                level3Matches[4],
+                level3Matches[1],
+                level3Matches[3]
+            ];
+            const allMatched = gameState.lvl3MatchedPairs.length === level3Matches.length;
+
+            return `
+                <h3 class="text-xl sm:text-2xl font-royal font-bold text-purple-800 text-center mb-1">
+                    Challenge 1: Match the Pictures with the Sentences
+                </h3>
+                <p class="text-center text-sm text-slate-600 font-semibold mb-5">
+                    Tap a picture on the left, then tap its matching sentence on the right!
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+                    <!-- Pictures Column -->
+                    <div class="space-y-2.5">
+                        ${level3Matches.map(item => {
+                            const isMatched = gameState.lvl3MatchedPairs.includes(item.id);
+                            const isSelected = gameState.lvl3MatchSelectedPic === item.id;
+                            return `
+                                <button onclick="selectMatchPicture(${item.id})" ${isMatched ? 'disabled' : ''}
+                                    class="w-full p-3 rounded-2xl border-2 flex items-center gap-3 transition font-bold cursor-pointer
+                                    ${isMatched ? 'bg-emerald-50 border-emerald-400 text-emerald-800 opacity-80' :
+                                      isSelected ? 'bg-pink-100 border-pink-500 ring-2 ring-pink-300 scale-[1.02]' :
+                                      'bg-white border-purple-200 hover:border-pink-400'}">
+                                    <span class="text-3xl bg-purple-50 p-2 rounded-xl">${item.emoji}</span>
+                                    <span class="text-sm sm:text-base">${item.label}</span>
+                                    ${isMatched ? '<span class="ml-auto text-emerald-600">✅</span>' : ''}
+                                </button>
+                            `;
+                        }).join('')}
+                    </div>
+
+                    <!-- Sentences Column -->
+                    <div class="space-y-2.5">
+                        ${shuffledSentences.map(item => {
+                            const isMatched = gameState.lvl3MatchedPairs.includes(item.id);
+                            return `
+                                <button onclick="selectMatchSentence(${item.id})" ${isMatched ? 'disabled' : ''}
+                                    class="w-full p-3.5 rounded-2xl border-2 text-left transition font-bold text-sm sm:text-base flex items-center justify-between cursor-pointer
+                                    ${isMatched ? 'bg-emerald-50 border-emerald-400 text-emerald-800' :
+                                      'bg-white border-purple-200 hover:bg-amber-50 hover:border-amber-400'}">
+                                    <span>${item.sentence}</span>
+                                    ${isMatched ? '<span>💎</span>' : ''}
+                                </button>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+
+                <div id="lvl3-c1-feedback" class="text-center font-bold text-sm mb-3 min-h-[24px] text-purple-700">
+                    ${gameState.lvl3MatchSelectedPic ? '✨ Now tap the matching sentence!' : '👆 Tap a picture to begin matching!'}
+                </div>
+
+                ${allMatched ? `
+                    <div class="text-center">
+                        <button onclick="startLevel3Challenge2()" class="btn-royal btn-purple text-white font-royal font-bold text-lg px-8 py-3 rounded-full cursor-pointer">
+                            NEXT: THE FINAL GRAMMAR PUZZLE ➡️
+                        </button>
+                    </div>
+                ` : ''}
+            `;
+        }
+
+        function selectMatchPicture(id) {
+            if (gameState.lvl3MatchedPairs.includes(id)) return;
+            playSound('click');
+            gameState.lvl3MatchSelectedPic = id;
+            renderScreen();
+        }
+
+        function selectMatchSentence(sentenceId) {
+            if (gameState.lvl3MatchedPairs.includes(sentenceId)) return;
+            if (!gameState.lvl3MatchSelectedPic) {
+                playSound('wrong');
+                document.getElementById('lvl3-c1-feedback').innerHTML = "⚠️ Tap a picture on the left first!";
+                return;
+            }
+            if (gameState.lvl3MatchSelectedPic === sentenceId) {
+                playSound('correct');
+                gameState.lvl3MatchedPairs.push(sentenceId);
+                gameState.lvl3MatchSelectedPic = null;
+                renderScreen();
+            } else {
+                playSound('wrong');
+                gameState.lvl3MatchSelectedPic = null;
+                renderScreen();
+                document.getElementById('lvl3-c1-feedback').innerHTML = "❌ Not quite! Look closely at the picture and try again!";
+            }
+        }
+
+        // Level 3 - Challenge 2: Word-Ordering Grammar Puzzles
+        function startLevel3Challenge2() {
+            playSound('click');
+            gameState.lvl3SubStage = 2;
+            gameState.lvl3PuzzleIndex = 0;
+            loadPuzzleWords(0);
+            renderScreen();
+        }
+
+        function loadPuzzleWords(idx) {
+            gameState.lvl3PuzzleBuilt = [];
+            gameState.lvl3PuzzleAvailable = [...level3Puzzles[idx].scrambled];
+        }
+
+        function renderLevel3Challenge2() {
+            const pIdx = gameState.lvl3PuzzleIndex;
+            const pObj = level3Puzzles[pIdx];
+
+            return `
+                <h3 class="text-xl sm:text-2xl font-royal font-bold text-purple-800 text-center mb-1">
+                    Challenge 2: The Final Grammar Puzzle (${pIdx + 1}/${level3Puzzles.length})
+                </h3>
+                <p class="text-center text-sm text-slate-600 font-semibold mb-5">
+                    Tap the magical word tiles in order to form a correct Present Continuous sentence!
+                </p>
+
+                <!-- Built Sentence Area -->
+                <div class="min-h-[68px] bg-purple-50 border-2 border-dashed border-purple-400 rounded-2xl p-3 mb-5 flex flex-wrap items-center justify-center gap-2">
+                    ${gameState.lvl3PuzzleBuilt.length === 0
+                        ? '<span class="text-purple-400 font-bold text-sm">Tap words below to build your sentence here...</span>'
+                        : gameState.lvl3PuzzleBuilt.map((word, idx) => `
+                            <button onclick="removePuzzleWord(${idx})" class="bg-purple-600 text-white font-royal font-bold px-4 py-2 rounded-xl shadow hover:bg-purple-700 cursor-pointer">
+                                ${word}
+                            </button>
+                        `).join('')
+                    }
+                </div>
+
+                <!-- Available Scrambled Word Tiles -->
+                <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+                    ${gameState.lvl3PuzzleAvailable.map((word, idx) => `
+                        <button onclick="addPuzzleWord(${idx})" class="btn-royal bg-white border-2 border-amber-400 text-slate-800 font-royal font-bold text-lg px-5 py-2.5 rounded-2xl shadow-md hover:bg-amber-50 cursor-pointer">
+                            ${word}
+                        </button>
+                    `).join('')}
+                </div>
+
+                <div id="lvl3-c2-feedback" class="hidden rounded-2xl p-3 text-center font-bold mb-4"></div>
+
+                <div class="flex flex-wrap items-center justify-center gap-3">
+                    <button onclick="resetCurrentPuzzle()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-5 py-3 rounded-full text-sm cursor-pointer">
+                        🔄 Reset Words
+                    </button>
+                    <button id="lvl3-c2-check" onclick="checkPuzzleAnswer()" class="btn-royal btn-pink text-white font-royal font-bold text-lg px-8 py-3 rounded-full cursor-pointer">
+                        ✨ CHECK SENTENCE
+                    </button>
+                    <button id="lvl3-c2-next" onclick="nextPuzzle()" class="hidden btn-royal btn-purple text-white font-royal font-bold text-lg px-8 py-3 rounded-full cursor-pointer">
+                        ${pIdx === level3Puzzles.length - 1 ? 'NEXT: SENTENCE CREATOR ➡️' : 'NEXT PUZZLE ➡️'}
+                    </button>
+                </div>
+            `;
+        }
+
+        function addPuzzleWord(availIdx) {
+            playSound('click');
+            const word = gameState.lvl3PuzzleAvailable.splice(availIdx, 1)[0];
+            gameState.lvl3PuzzleBuilt.push(word);
+            renderScreen();
+        }
+
+        function removePuzzleWord(builtIdx) {
+            playSound('click');
+            const word = gameState.lvl3PuzzleBuilt.splice(builtIdx, 1)[0];
+            gameState.lvl3PuzzleAvailable.push(word);
+            renderScreen();
+        }
+
+        function resetCurrentPuzzle() {
+            playSound('click');
+            loadPuzzleWords(gameState.lvl3PuzzleIndex);
+            renderScreen();
+        }
+
+        function checkPuzzleAnswer() {
+            const pObj = level3Puzzles[gameState.lvl3PuzzleIndex];
+            const builtSentence = gameState.lvl3PuzzleBuilt.join(' ') + '.';
+            const feedbackEl = document.getElementById('lvl3-c2-feedback');
+            feedbackEl.classList.remove('hidden');
+
+            if (builtSentence === pObj.answer) {
+                playSound('correct');
+                feedbackEl.className = "rounded-2xl p-3 text-center font-bold mb-4 bg-emerald-100 text-emerald-800 border border-emerald-300";
+                feedbackEl.innerHTML = `🌟 Brilliant! "${pObj.answer}" is completely correct!`;
+                document.getElementById('lvl3-c2-check').classList.add('hidden');
+                document.getElementById('lvl3-c2-next').classList.remove('hidden');
+            } else {
+                playSound('wrong');
+                feedbackEl.className = "rounded-2xl p-3 text-center font-bold mb-4 bg-rose-100 text-rose-800 border border-rose-300";
+                feedbackEl.innerHTML = "🧚‍♀️ Not quite right! Remember: Person + am/is/are + verb-ing!";
+            }
+        }
+
+        function nextPuzzle() {
+            playSound('click');
+            if (gameState.lvl3PuzzleIndex < level3Puzzles.length - 1) {
+                gameState.lvl3PuzzleIndex++;
+                loadPuzzleWords(gameState.lvl3PuzzleIndex);
+                renderScreen();
+            } else {
+                gameState.lvl3SubStage = 3;
+                renderScreen();
+            }
+        }
+
+        // Level 3 - Challenge 3: Royal Sentence Creator
+        function renderLevel3Challenge3() {
+            const allChecked = gameState.lvl3CreatorChecked.every(Boolean);
+
+            return `
+                <h3 class="text-xl sm:text-2xl font-royal font-bold text-purple-800 text-center mb-1">
+                    Challenge 3: Become a Royal Sentence Creator
+                </h3>
+                <p class="text-center text-sm text-slate-600 font-semibold mb-5">
+                    Look at the three pictures and write your own Present Continuous sentences!
+                </p>
+
+                <div class="space-y-4 mb-6">
+                    ${level3Creators.map((item, idx) => {
+                        const checked = gameState.lvl3CreatorChecked[idx];
+                        return `
+                            <div class="bg-amber-50/70 border-2 ${checked ? 'border-emerald-400 bg-emerald-50/40' : 'border-amber-200'} rounded-2xl p-4">
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-2">
+                                    <div class="text-4xl bg-white px-3 py-2 rounded-xl shadow-sm text-center">${item.emoji}</div>
+                                    <div class="flex-grow">
+                                        <div class="font-royal font-bold text-purple-900 text-base">${item.title}</div>
+                                        <div class="flex flex-col sm:flex-row gap-2 mt-1.5">
+                                            <input type="text" id="creator-input-${idx}"
+                                                value="${gameState.lvl3CreatorInputs[idx]}"
+                                                oninput="gameState.lvl3CreatorInputs[${idx}] = this.value"
+                                                placeholder="${item.placeholder}"
+                                                class="flex-grow px-3.5 py-2 rounded-xl border-2 border-purple-300 focus:border-pink-500 focus:outline-none font-bold text-slate-800 bg-white">
+                                            <button onclick="checkCreatorSentence(${idx})" class="btn-royal btn-blue text-white font-royal font-bold px-4 py-2 rounded-xl text-sm shrink-0 cursor-pointer">
+                                                Check Sentence
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="creator-feedback-${idx}" class="${checked ? '' : 'hidden'} text-xs sm:text-sm font-bold mt-2 p-2.5 rounded-xl bg-white border border-emerald-200 text-emerald-800">
+                                    ✅ Great job, Royal Writer! Suggested Answer: <span class="text-purple-700">"${item.suggested}"</span>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+
+                ${allChecked ? `
+                    <div class="text-center">
+                        <button onclick="completeLevel3()" class="btn-royal btn-gold font-royal font-bold text-lg sm:text-xl px-8 py-4 rounded-full cursor-pointer">
+                            💎 COLLECT GOLDEN JEWEL 3!
+                        </button>
+                    </div>
+                ` : `
+                    <p class="text-center text-xs font-bold text-purple-600">
+                        ✨ Check all 3 sentences above to unlock your final Golden Jewel!
+                    </p>
+                `}
+            `;
+        }
+
+        function checkCreatorSentence(idx) {
+            const item = level3Creators[idx];
+            const val = (gameState.lvl3CreatorInputs[idx] || '').trim().toLowerCase();
+            const fb = document.getElementById(`creator-feedback-${idx}`);
+            fb.classList.remove('hidden');
+
+            const hasKeywords = item.keywords.every(kw => val.includes(kw));
+            if (hasKeywords && val.length >= 8) {
+                playSound('correct');
+                gameState.lvl3CreatorChecked[idx] = true;
+                renderScreen();
+            } else {
+                playSound('wrong');
+                fb.className = "text-xs sm:text-sm font-bold mt-2 p-2.5 rounded-xl bg-amber-100 border border-amber-300 text-amber-900";
+                fb.innerHTML = `🧚‍♀️ Tip: Include <strong>"${item.keywords.join(' + ')}"</strong> in your sentence! (Example: <em>${item.suggested}</em>)`;
+            }
+        }
+
+        function completeLevel3() {
+            gameState.jewelsCollected[3] = true;
+            playSound('jewel');
+            launchConfetti();
+            updateProgressBar();
+            renderScreen();
+        }
+
+        /* --- FINAL CHALLENGE: THE ROYAL TREASURE CHEST --- */
+        function renderTreasureScreen() {
+            const isOpen = gameState.treasureUnlocked;
+
+            return `
+                <div class="royal-card rounded-3xl p-6 sm:p-10 text-center max-w-3xl w-full border-4 border-amber-300 relative overflow-hidden">
+                    <h2 class="text-3xl sm:text-4xl font-royal font-bold text-amber-600 mb-2">
+                        👑 THE FINAL ROYAL MISSION!
+                    </h2>
+
+                    ${!isOpen ? `
+                        <p class="text-slate-700 font-semibold text-base sm:text-lg max-w-xl mx-auto mb-6">
+                            Congratulations, royal explorer! You have collected all three Golden Jewels. Place them into the Royal Treasure Chest to restore the magic of Everglow Kingdom!
+                        </p>
+
+                        <!-- Three Collected Jewels Display -->
+                        <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mb-6">
+                            ${SVGs.jewel('#f472b6', '#fbcfe8', 'Golden Jewel 1')}
+                            ${SVGs.jewel('#a855f7', '#e9d5ff', 'Golden Jewel 2')}
+                            ${SVGs.jewel('#38bdf8', '#bae6fd', 'Golden Jewel 3')}
+                        </div>
+
+                        ${SVGs.treasureChest(false)}
+
+                        <div class="mt-6">
+                            <button onclick="unlockRoyalTreasure()" class="btn-royal btn-gold font-royal font-bold text-xl px-10 py-4 rounded-full cursor-pointer animate-bounce">
+                                ✨ UNLOCK THE ROYAL TREASURE!
+                            </button>
+                        </div>
+                    ` : `
+                        ${SVGs.treasureChest(true)}
+
+                        <div class="bg-gradient-to-r from-amber-50 via-pink-50 to-purple-50 border-2 border-amber-300 rounded-2xl p-6 my-6">
+                            <h3 class="text-2xl sm:text-3xl font-royal font-bold text-purple-800 mb-2">
+                                🎉 CONGRATULATIONS, ROYAL GRAMMAR MASTER!
+                            </h3>
+                            <p class="text-slate-700 font-semibold text-base sm:text-lg leading-relaxed">
+                                You have successfully completed all three magical grammar challenges! You are now an official <strong>Royal Grammar Master of Everglow Kingdom</strong>! Keep learning, keep practising, and let your English shine!
+                            </p>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <button onclick="navigateTo('certificate')" class="btn-royal btn-pink text-white font-royal font-bold text-lg sm:text-xl px-8 py-4 rounded-full cursor-pointer">
+                                📜 CLAIM MY CERTIFICATE
+                            </button>
+                            <button onclick="resetGame()" class="btn-royal btn-purple text-white font-royal font-bold text-lg px-7 py-4 rounded-full cursor-pointer">
+                                🔄 PLAY AGAIN
+                            </button>
+                        </div>
+                    `}
+                </div>
+            `;
+        }
+
+        function unlockRoyalTreasure() {
+            gameState.treasureUnlocked = true;
+            playSound('chest');
+            launchConfetti();
+            setTimeout(launchConfetti, 500);
+            renderScreen();
+        }
+
+        /* --- CERTIFICATE OF ROYAL ACHIEVEMENT --- */
+        function renderCertificateScreen() {
+            const count = [1, 2, 3].filter(k => gameState.jewelsCollected[k]).length;
+            let badgeTitle = "🌟 ROYAL EXPLORER IN TRAINING";
+            if (count === 1) badgeTitle = "🥉 JUNIOR ROYAL EXPLORER";
+            if (count === 2) badgeTitle = "🥈 GRAMMAR PRINCESS / PRINCE";
+            if (count === 3) badgeTitle = "🥇 ROYAL GRAMMAR MASTER";
+
+            const today = new Date().toLocaleDateString('en-GB', {
+                day: 'numeric', month: 'long', year: 'numeric'
+            });
+
+            return `
+                <div class="w-full max-w-3xl">
+                    <!-- Name Editor Bar (Hidden when printing) -->
+                    <div class="royal-card rounded-2xl p-4 mb-4 flex flex-col sm:flex-row items-center justify-between gap-3 no-print">
+                        <div class="flex items-center gap-2 w-full sm:w-auto flex-grow">
+                            <span class="font-bold text-purple-800 text-sm shrink-0">Student Name:</span>
+                            <input type="text" value="${gameState.studentName}"
+                                oninput="gameState.studentName = this.value; document.getElementById('cert-student-name').textContent = this.value || 'Little Royal Explorer';"
+                                placeholder="Type student name here..."
+                                class="w-full px-3 py-1.5 rounded-xl border-2 border-pink-300 font-bold text-purple-900 focus:outline-none">
+                        </div>
+                        <div class="flex gap-2 shrink-0">
+                            <button onclick="window.print()" class="btn-royal btn-gold font-royal font-bold px-5 py-2 rounded-full text-sm cursor-pointer">
+                                🖨️ PRINT CERTIFICATE
+                            </button>
+                            <button onclick="navigateTo('welcome')" class="btn-royal btn-purple text-white font-royal font-bold px-4 py-2 rounded-full text-sm cursor-pointer">
+                                🏠 BACK TO HOME
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Printable Certificate -->
+                    <div id="certificate-printable" class="rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden shadow-2xl"
+                        style="background: linear-gradient(135deg, #fff5f8 0%, #f5f0ff 100%); border: 8px double #f59e0b;">
+
+                        <!-- Decorative Corner Stars -->
+                        <div class="text-3xl text-amber-400 flex justify-between mb-2">
+                            <span>✨🌸</span>
+                            <span class="text-5xl">👑</span>
+                            <span>🌸✨</span>
+                        </div>
+
+                        <h2 class="text-2xl sm:text-4xl font-royal font-bold text-amber-600 tracking-wide uppercase mb-2">
+                            CERTIFICATE OF ROYAL ACHIEVEMENT
+                        </h2>
+
+                        <p class="text-slate-600 font-bold text-sm sm:text-base mb-4">
+                            This certificate is proudly presented to:
+                        </p>
+
+                        <div id="cert-student-name" class="text-3xl sm:text-4xl font-royal font-bold text-pink-600 border-b-4 border-dotted border-amber-400 inline-block px-8 pb-1 mb-5">
+                            ${gameState.studentName || 'Little Royal Explorer'}
+                        </div>
+
+                        <p class="text-slate-700 font-semibold text-sm sm:text-base mb-2">
+                            For successfully participating in:
+                        </p>
+                        <div class="text-lg sm:text-xl font-royal font-bold text-purple-800 mb-4">
+                            PRESENT CONTINUOUS: THE ROYAL KINGDOM QUEST
+                        </div>
+
+                        <div class="bg-white/80 border-2 border-pink-200 rounded-2xl p-4 max-w-lg mx-auto mb-5 text-left">
+                            <p class="font-bold text-purple-900 text-xs sm:text-sm mb-2 text-center">Demonstrating Royal English Skills in:</p>
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs sm:text-sm font-semibold text-slate-700">
+                                <li>⭐ Identifying Present Continuous</li>
+                                <li>⭐ Using am, is & are correctly</li>
+                                <li>⭐ Forming verb-ing sentences</li>
+                                <li>⭐ Describing actions happening now</li>
+                            </ul>
+                        </div>
+
+                        <!-- Achievement Badge Pill -->
+                        <div class="inline-block bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-200 border-2 border-amber-500 text-amber-900 font-royal font-bold text-base sm:text-lg px-6 py-2 rounded-full shadow-sm mb-6">
+                            Achievement Badge: ${badgeTitle}
+                        </div>
+
+                        <!-- Signatures & Date -->
+                        <div class="grid grid-cols-2 gap-6 max-w-lg mx-auto pt-4 border-t border-purple-200 text-xs sm:text-sm font-bold text-slate-600">
+                            <div>
+                                <div class="text-purple-900 font-royal text-base mb-1">${today}</div>
+                                <div class="border-t border-slate-400 pt-1">Date</div>
+                            </div>
+                            <div>
+                                <div class="text-pink-600 font-royal italic text-base mb-1">Royal Fairy & Teacher</div>
+                                <div class="border-t border-slate-400 pt-1">Teacher’s Signature</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function resetGame() {
+            playSound('click');
+            gameState.unlockedLevels = [1];
+            gameState.jewelsCollected = { 1: false, 2: false, 3: false };
+            gameState.treasureUnlocked = false;
+            gameState.lvl1Index = 0;
+            gameState.lvl1Answered = false;
+            gameState.lvl2Index = 0;
+            gameState.lvl2Answered = false;
+            gameState.lvl3SubStage = 1;
+            gameState.lvl3MatchSelectedPic = null;
+            gameState.lvl3MatchedPairs = [];
+            gameState.lvl3PuzzleIndex = 0;
+            gameState.lvl3CreatorInputs = ['', '', ''];
+            gameState.lvl3CreatorChecked = [false, false, false];
+            navigateTo('welcome');
+        }
+
+        /* =========================================================================
+           7. INITIALIZE APPLICATION ON WINDOW LOAD
+           ========================================================================= */
+        window.onload = function () {
+            updateProgressBar();
+            renderScreen();
+        };
+    </script>
+</body>
+</html>
